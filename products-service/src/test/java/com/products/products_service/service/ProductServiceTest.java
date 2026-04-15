@@ -1,31 +1,28 @@
 package com.products.products_service.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
 import com.products.products_service.entities.Product;
 import com.products.products_service.repositories.ProductRepository;
 import com.products.products_service.services.ProductService;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.UUID;
-
-import static org.mockito.Mockito.when;
-import static org.mockito.ArgumentMatchers.any;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 @ExtendWith(MockitoExtension.class)
 class ProductServiceTest {
 
-    @Mock
-    private ProductRepository repository;
+    @Mock private ProductRepository repository;
 
-    @InjectMocks
-    private ProductService service;
+    @InjectMocks private ProductService service;
 
     @Test
     void shouldSaveProductSuccessfully() {
@@ -35,17 +32,16 @@ class ProductServiceTest {
         productInput.setPrice(new BigDecimal("1000.00"));
         productInput.setStatus(Product.Status.ACTIVE);
 
-
         UUID fakeId = UUID.randomUUID();
-        Product savedProduct = new Product(
-                fakeId,
-                "SKU123",
-                "Laptop",
-                new BigDecimal("1000.00"),
-                Product.Status.ACTIVE,
-                LocalDateTime.now(),
-                LocalDateTime.now()
-        );
+        Product savedProduct =
+                new Product(
+                        fakeId,
+                        "SKU123",
+                        "Laptop",
+                        new BigDecimal("1000.00"),
+                        Product.Status.ACTIVE,
+                        LocalDateTime.now(),
+                        LocalDateTime.now());
 
         when(repository.save(any(Product.class))).thenReturn(savedProduct);
 

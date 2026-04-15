@@ -3,10 +3,9 @@ package com.products.products_service.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,18 +36,16 @@ public class Product {
     private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
-    private  Status status;
+    private Status status;
 
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    @UpdateTimestamp private LocalDateTime updatedAt;
 
     public enum Status {
         ACTIVE,
         INACTIVE
     }
-
 }

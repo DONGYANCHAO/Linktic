@@ -4,9 +4,8 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.Data;
-
 import java.math.BigDecimal;
+import lombok.Data;
 
 @Data
 public class ProductRequest {
@@ -16,8 +15,7 @@ public class ProductRequest {
     @NotBlank(message = "El nombre no puede estar vacio")
     private String name;
 
-    @NotNull
-    @DecimalMin(value = "0.01", message = "El precio debe ser mayor a cero")
+    @NotNull @DecimalMin(value = "0.01", message = "El precio debe ser mayor a cero")
     private BigDecimal price;
 
     @Pattern(regexp = "ACTIVE|INACTIVE", message = "El estado debe ser ACTIVE o INACTIVE")

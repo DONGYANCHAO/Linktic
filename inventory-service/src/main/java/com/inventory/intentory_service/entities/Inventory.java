@@ -1,16 +1,15 @@
 package com.inventory.intentory_service.entities;
 
-
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.util.UUID;
+import lombok.*;
 
 @Entity
 @Table(name = "inventory")
 @Getter
 @Setter
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Inventory {
     @Id
@@ -26,6 +25,5 @@ public class Inventory {
     @Column(nullable = false)
     private Integer reserved;
 
-    @Version
-    private Long version;
+    @Version private Long version;
 }
