@@ -3,12 +3,10 @@ package com.products.products_service.services;
 import com.products.products_service.entities.Product;
 import com.products.products_service.exceptions.ProductAlreadyExistsException;
 import com.products.products_service.repositories.ProductRepository;
+import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
-
 
 @Service
 public class ProductService {
@@ -27,21 +25,21 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Page<Product> getProducts(String name, String sku,Pageable pageable) {
-        if(name != null){
-            return  productRepository.findByNameContainingIgnoreCase(name,pageable);
-        }else if(sku != null){
-            return  productRepository.findBySku(sku,pageable);
+    public Page<Product> getProducts(String name, String sku, Pageable pageable) {
+        if (name != null) {
+            return productRepository.findByNameContainingIgnoreCase(name, pageable);
+        } else if (sku != null) {
+            return productRepository.findBySku(sku, pageable);
         }
 
         return productRepository.findAll(pageable);
     }
 
     public boolean exists(String id) {
-        try{
+        try {
             UUID uuid = UUID.fromString(id);
             return productRepository.existsById(uuid);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return false;
         }
     }

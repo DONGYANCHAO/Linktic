@@ -2,9 +2,8 @@ package com.products.products_service.config;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
+import org.springframework.stereotype.Component;
 
 @Component
 public class JwtUtil {
@@ -13,7 +12,7 @@ public class JwtUtil {
     private final Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
 
     public String generateToken(String username) {
-        return  JWT.create()
+        return JWT.create()
                 .withSubject(username)
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 3600000))
@@ -28,10 +27,8 @@ public class JwtUtil {
         try {
             JWT.require(algorithm).build().verify(token);
             return true;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
-
 }

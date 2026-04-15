@@ -3,6 +3,8 @@ package com.products.products_service.controllers;
 import com.products.products_service.entities.Product;
 import com.products.products_service.services.ProductService;
 import jakarta.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,10 +12,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
-
 
 @RestController
 @RequestMapping("/api/products")
@@ -24,20 +22,21 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllProducts(
-        @RequestParam(required = false) String name,
-        @RequestParam(required = false) String sku,
-        @PageableDefault(size = 10, sort = "name") Pageable pageable) {
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String sku,
+            @PageableDefault(size = 10, sort = "name") Pageable pageable) {
         Page<Product> productsPage = productService.getProducts(name, sku, pageable);
         Map<String, Object> response = new HashMap<>();
         response.put("data", productsPage.getContent());
 
-        Map<String, Object> meta  = new HashMap<>();
-        meta.put("meta", Map.of(
-        "totalItems", productsPage.getTotalElements(),
-        "totalPages", productsPage.getTotalPages(),
-        "currentPage", productsPage.getNumber(),
-        "page-size", productsPage.getSize()
-        ));
+        Map<String, Object> meta = new HashMap<>();
+        meta.put(
+                "meta",
+                Map.of(
+                        "totalItems", productsPage.getTotalElements(),
+                        "totalPages", productsPage.getTotalPages(),
+                        "currentPage", productsPage.getNumber(),
+                        "page-size", productsPage.getSize()));
         response.put("meta", meta);
 
         return ResponseEntity.ok(response);
@@ -50,9 +49,7 @@ public class ProductController {
         Map<String, Object> response = new HashMap<>();
         response.put("data", savedProduct);
 
-        response.put("links",Map.of(
-                "self", "/api/products/" + savedProduct.getId()
-        ));
+        response.put("links", Map.of("self", "/api/products/" + savedProduct.getId()));
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 

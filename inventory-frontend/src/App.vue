@@ -14,11 +14,11 @@
 </template>
 
 <script setup>
-import ToastContainer from './components/ToastContainer.vue';
-import { useAuthStore } from './stores/auth';
-import NavBarComponent from './components/NavBarComponent.vue';
+import ToastContainer from './components/ToastContainer.vue'
+import { useAuthStore } from './stores/auth'
+import NavBarComponent from './components/NavBarComponent.vue'
 
-const authStore = useAuthStore();
+const authStore = useAuthStore()
 </script>
 
 <style>

@@ -10,7 +10,6 @@ public class PurchaseRequest {
     @NotBlank(message = "El Id del producto es obligatorio")
     private String productId;
 
-    @NotNull(message = "La cantidad es obligatoria")
-    @Min(value = 1, message = "Debes comprar al menos 1")
+    @NotNull(message = "La cantidad es obligatoria") @Min(value = 1, message = "Debes comprar al menos 1")
     private Integer quantity;
 }

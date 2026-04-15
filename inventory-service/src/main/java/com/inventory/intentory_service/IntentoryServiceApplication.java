@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class IntentoryServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(IntentoryServiceApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(IntentoryServiceApplication.class, args);
+    }
 }
