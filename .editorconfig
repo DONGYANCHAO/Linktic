@@ -1,0 +1,38 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+max_line_length = 100
+trim_trailing_whitespace = true
+
+[*.java]
+indent_size = 4
+continuation_indent_size = 4
+max_line_length = 100
+
+[*.xml]
+indent_size = 2
+
+[*.sql]
+indent_size = 2
+
+[*.{js,ts,vue,json,css,scss,less,html}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+[*.{sh,py}]
+indent_size = 4
+
+[Makefile]
+indent_style = tab
+indent_size = 4
+
+[Dockerfile]
+indent_size = 2

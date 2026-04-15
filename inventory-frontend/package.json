@@ -7,7 +7,16 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:unit": "vitest"
+    "test:unit": "vitest",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix",
+    "format": "prettier --write src/",
+    "prepare": "cd .. && husky install inventory-frontend/.husky"
+  },
+  "lint-staged": {
+    "*.{vue,js,cjs,mjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
@@ -18,10 +27,16 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.5",
+    "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.27",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.24.0",
+    "husky": "^9.0.11",
     "jsdom": "^29.0.2",
+    "lint-staged": "^15.2.2",
     "postcss": "^8.5.9",
+    "prettier": "^3.2.5",
     "tailwindcss": "^4.2.2",
     "vite": "^8.0.4",
     "vitest": "^4.1.4"

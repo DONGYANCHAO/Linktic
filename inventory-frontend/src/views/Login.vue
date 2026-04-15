@@ -5,13 +5,13 @@
         <h2 class="text-3xl font-extrabold text-gray-900">Bienvenido</h2>
         <p class="text-gray-500 mt-2">Gestión de Inventario</p>
       </div>
-      
+
       <form @submit.prevent="handleLogin" class="space-y-6">
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">Usuario</label>
-          <input 
-            v-model="credentials.username" 
-            type="text" 
+          <input
+            v-model="credentials.username"
+            type="text"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
             placeholder="admin"
             required
@@ -20,17 +20,17 @@
 
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
-          <input 
-            v-model="credentials.password" 
-            type="password" 
+          <input
+            v-model="credentials.password"
+            type="password"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
             placeholder="********"
             required
           />
         </div>
 
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           :disabled="isLoading"
           class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg transition-colors disabled:bg-emerald-300 disabled:cursor-not-allowed"
         >
@@ -46,33 +46,33 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
-import { useAuthStore } from '../stores/auth';
-import { useRouter } from 'vue-router';
+import { ref, reactive } from 'vue'
+import { useAuthStore } from '../stores/auth'
+import { useRouter } from 'vue-router'
 
-const authStore = useAuthStore();
-const router = useRouter();
+const authStore = useAuthStore()
+const router = useRouter()
 
 const credentials = reactive({
   username: '',
   password: ''
-});
+})
 
-const isLoading = ref(false);
-const errorMessage = ref('');
+const isLoading = ref(false)
+const errorMessage = ref('')
 
 const handleLogin = async () => {
-  console.log(credentials);
-  isLoading.value = true;
-  errorMessage.value = '';
-  
+  console.log(credentials)
+  isLoading.value = true
+  errorMessage.value = ''
+
   try {
-    await authStore.login(credentials);
-    router.push('/catalog');
+    await authStore.login(credentials)
+    router.push('/catalog')
   } catch (error) {
-    errorMessage.value = 'Credenciales inválidas. Intenta de nuevo.';
+    errorMessage.value = 'Credenciales inválidas. Intenta de nuevo.'
   } finally {
-    isLoading.value = false;
+    isLoading.value = false
   }
-};
+}
 </script>
