@@ -1,0 +1,2 @@
+cd inventory-frontend
+npx lint-staged
